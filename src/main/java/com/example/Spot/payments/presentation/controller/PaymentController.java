@@ -39,8 +39,8 @@ public class PaymentController {
     ) {
         validateAccessByRole(principal, orderId, null);
 
-        UUID paymentId = paymentService.preparePayment(request);
-        PaymentResponseDto.Confirm response = paymentService.executePaymentBilling(paymentId);
+        UUID paymentId = paymentService.ready(request);
+        PaymentResponseDto.Confirm response = paymentService.createPaymentBillingApprove(paymentId);
         return ApiResponse.onSuccess(GeneralSuccessCode.GOOD_REQUEST, response);
     }
 
